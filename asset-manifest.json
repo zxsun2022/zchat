@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/zchat%20/static/css/main.bebc4aae.css",
+    "main.js": "/zchat%20/static/js/main.92319b66.js",
+    "index.html": "/zchat%20/index.html",
+    "main.bebc4aae.css.map": "/zchat%20/static/css/main.bebc4aae.css.map",
+    "main.92319b66.js.map": "/zchat%20/static/js/main.92319b66.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bebc4aae.css",
+    "static/js/main.92319b66.js"
+  ]
+}
