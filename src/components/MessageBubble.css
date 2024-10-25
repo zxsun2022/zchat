@@ -1,0 +1,45 @@
+/* src/components/MessageBubble.css */
+
+.message-bubble {
+    max-width: 70%;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    position: relative;
+    word-wrap: break-word;
+    display: inline-block;
+  }
+  
+  .message-bubble.user {
+    background-color: #4a6edb;
+    color: #ffffff;
+    align-self: flex-end;
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+  }
+  
+  .message-bubble.ai {
+    background-color: #e6e6e6;
+    color: #333333;
+    align-self: flex-start;
+    margin-right: auto;
+    border-bottom-left-radius: 0;
+  }
+  
+  .message-content {
+    position: relative;
+  }
+  
+  .timestamp {
+    font-size: 0.8em;
+    color: #b6b6b6;
+    margin-top: 5px;
+    text-align: right;
+  }
+  
+  .message-menu {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+  

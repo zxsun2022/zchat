@@ -1,0 +1,84 @@
+/* src/components/ApiKeyModal.css */
+
+.api-key-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .api-key-modal {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .api-key-modal h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333333;
+  }
+  
+  .api-key-modal input {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 1em;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .save-button {
+    background: linear-gradient(45deg, #6b8ce3, #4a6edb);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+  }
+  
+  .save-button:hover {
+    background: linear-gradient(45deg, #4a6edb, #3555c3);
+  }
+  
+  .save-button:active {
+    transform: scale(0.98);
+  }
+  
+  .cancel-button {
+    background-color: #cccccc;
+    color: #333333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+  }
+  
+  .cancel-button:hover {
+    background-color: #bbbbbb;
+  }
+  
+  .cancel-button:active {
+    transform: scale(0.98);
+  }
+  

@@ -1,0 +1,140 @@
+/* src/components/ChatSettingsModal.css */
+.settings-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.settings-modal {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #888888;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #555555;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body label {
+  margin-bottom: 15px;
+}
+
+.modal-body label span {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.modal-body input,
+.modal-body textarea {
+  width: 100%;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.params-section {
+  margin-top: 20px;
+}
+
+.params-section h3 {
+  margin-bottom: 10px;
+}
+
+.params-section label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.params-section label span {
+  width: 150px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.save-button,
+.cancel-button,
+.delete-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s ease;
+}
+
+.save-button {
+  background: linear-gradient(45deg, #6b8ce3, #4a6edb);
+  color: #ffffff;
+}
+
+.save-button:hover {
+  background: linear-gradient(45deg, #4a6edb, #3555c3);
+}
+
+.cancel-button {
+  background-color: #cccccc;
+  color: #333333;
+}
+
+.cancel-button:hover {
+  background-color: #bbbbbb;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.save-button:active,
+.cancel-button:active,
+.delete-button:active {
+  transform: scale(0.98);
+}

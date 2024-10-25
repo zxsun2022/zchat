@@ -1,38 +1,75 @@
-.App {
-  text-align: center;
+/* src/App.css */
+
+.app {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sidebar {
+  width: 250px; 
+  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar-header {
+  padding: 10px;
+  background-color: #4a6edb;
+  color: white;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+.modify-api-key-button {
+  background: linear-gradient(45deg, #6b8ce3, #4a6edb);
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px; 
+  margin: 15px; 
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em; 
+  transition: background 0.3s ease;
+}
+
+.modify-api-key-button:hover {
+  background: linear-gradient(45deg, #4a6edb, #3555c3);
+}
+
+.modify-api-key-button:active {
+  transform: scale(0.98);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.no-chat-selected {
+  flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: #888888;
+  font-size: 1.2em;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.api-key-modal-overlay,
+.settings-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }

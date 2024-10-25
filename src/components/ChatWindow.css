@@ -1,0 +1,86 @@
+/* src/components/ChatWindow.css */
+
+.chat-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-header {
+  padding: 15px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.settings-button {
+  background: none;
+  border: none;
+  color: #4a6edb;
+  cursor: pointer;
+  font-size: 1em;
+  transition: color 0.3s ease;
+}
+
+.settings-button:hover {
+  color: #3555c3;
+}
+
+.messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-indicator {
+  text-align: center;
+  color: #888888;
+  margin-top: 10px;
+}
+
+.input-area {
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+}
+
+.input-area textarea {
+  flex: 1;
+  resize: none;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.input-area button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #6b8ce3, #4a6edb);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.input-area button:hover {
+  background: linear-gradient(45deg, #4a6edb, #3555c3);
+}
+
+.input-area button:active {
+  transform: scale(0.98);
+}
