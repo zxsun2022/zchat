@@ -5,7 +5,7 @@ import { chatWithCohere } from '../cohere';
 import ChatSettingsModal from './ChatSettingsModal';
 import './ChatWindow.css'; 
 
-function ChatWindow({ apiKey, chat, updateChat, deleteChat }) {
+function ChatWindow({ apiKey, chat, updateChat, deleteChat, isMobile, onBack }) {
     const [inputMessage, setInputMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
@@ -83,6 +83,11 @@ function ChatWindow({ apiKey, chat, updateChat, deleteChat }) {
     return (
         <div className="chat-window">
             <div className="chat-header">
+                {isMobile && (
+                    <button className="back-button" onClick={onBack}>
+                        &#8592; Back
+                    </button>
+                )}
                 <h2>{chat.title}</h2>
                 <button className="settings-button" onClick={() => setShowSettings(true)}>
                     Settings
