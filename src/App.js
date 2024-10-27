@@ -27,23 +27,47 @@ function App() {
     }
   };
 
-  const storedApiKey = getStoredApiKey();
-  const storedChats = getStoredChats();
+  // Retrieve stored state from localStorage
+  const getStoredState = () => {
+    try {
+      const storedState = localStorage.getItem('appState');
+      return storedState ? JSON.parse(storedState) : {};
+    } catch (e) {
+      console.error('Failed to parse appState from localStorage:', e);
+      return {};
+    }
+  };
 
-  const [apiKey, setApiKey] = useState(storedApiKey);
-  const [chats, setChats] = useState(storedChats);
+  const storedState = getStoredState();
 
-  // Initialize currentChatId
+  // Initialize state variables
+  const [apiKey, setApiKey] = useState(getStoredApiKey());
+  const [chats, setChats] = useState(getStoredChats());
   const [currentChatId, setCurrentChatId] = useState(
-    storedChats.length > 0 && storedChats[0] ? storedChats[0].id : null
+    storedState.currentChatId !== undefined ? storedState.currentChatId : null
   );
-
-  const [showApiKeyModal, setShowApiKeyModal] = useState(!storedApiKey);
+  const [showApiKeyModal, setShowApiKeyModal] = useState(!apiKey);
 
   // Handle mobile view state
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [showChatList, setShowChatList] = useState(true);
+  const [showChatList, setShowChatList] = useState(
+    storedState.showChatList !== undefined ? storedState.showChatList : true
+  );
 
+  // Save state to localStorage
+  useEffect(() => {
+    try {
+      const appState = {
+        currentChatId,
+        showChatList,
+      };
+      localStorage.setItem('appState', JSON.stringify(appState));
+    } catch (e) {
+      console.error('Failed to save appState to localStorage:', e);
+    }
+  }, [currentChatId, showChatList]);
+
+  // Save apiKey and chats to localStorage
   useEffect(() => {
     if (apiKey) {
       try {
@@ -63,22 +87,18 @@ function App() {
     }
   }, [chats]);
 
+  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
-      if (!mobile) {
-        setShowChatList(true);
-      } else {
-        setShowChatList(currentChatId == null); // Use == to catch null and undefined
-      }
+      // Do not change showChatList here
     };
 
     window.addEventListener('resize', handleResize);
     handleResize(); 
     return () => window.removeEventListener('resize', handleResize);
-  }, [currentChatId]);
-
+  }, []);
 
   const addNewChat = () => {
     const newChat = {

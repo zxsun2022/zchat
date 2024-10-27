@@ -4,6 +4,7 @@ import MessageBubble from './MessageBubble';
 import { chatWithCohere } from '../cohere';
 import ChatSettingsModal from './ChatSettingsModal';
 import './ChatWindow.css'; 
+import { FaArrowLeft } from 'react-icons/fa'; 
 
 function ChatWindow({ apiKey, chat, updateChat, deleteChat, isMobile, onBack }) {
     const [inputMessage, setInputMessage] = useState('');
@@ -85,7 +86,7 @@ function ChatWindow({ apiKey, chat, updateChat, deleteChat, isMobile, onBack }) 
             <div className="chat-header">
                 {isMobile && (
                     <button className="back-button" onClick={onBack}>
-                        &#8592; Back
+                        <FaArrowLeft />
                     </button>
                 )}
                 <h2>{chat.title}</h2>
