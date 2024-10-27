@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/zchat/static/css/main.c16cc6c5.css",
-    "main.js": "/zchat/static/js/main.1ed3fb85.js",
+    "main.css": "/zchat/static/css/main.c5e435e3.css",
+    "main.js": "/zchat/static/js/main.91b65463.js",
     "index.html": "/zchat/index.html",
-    "main.c16cc6c5.css.map": "/zchat/static/css/main.c16cc6c5.css.map",
-    "main.1ed3fb85.js.map": "/zchat/static/js/main.1ed3fb85.js.map"
+    "main.c5e435e3.css.map": "/zchat/static/css/main.c5e435e3.css.map",
+    "main.91b65463.js.map": "/zchat/static/js/main.91b65463.js.map"
   },
   "entrypoints": [
-    "static/css/main.c16cc6c5.css",
-    "static/js/main.1ed3fb85.js"
+    "static/css/main.c5e435e3.css",
+    "static/js/main.91b65463.js"
   ]
 }
