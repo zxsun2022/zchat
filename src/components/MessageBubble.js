@@ -18,7 +18,7 @@ function MessageBubble({ message }) {
       </div>
       {showMenu && (
         <div className="message-menu">
-          {/* more functions here in the future */}
+          {/* More functions can be added here in the future */}
         </div>
       )}
     </div>
