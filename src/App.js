@@ -6,41 +6,79 @@ import ApiKeyModal from './components/ApiKeyModal';
 import './App.css';
 
 function App() {
-  const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '');
-  const [chats, setChats] = useState(JSON.parse(localStorage.getItem('chats')) || []);
-  const [currentChatId, setCurrentChatId] = useState(null);
-  const [showApiKeyModal, setShowApiKeyModal] = useState(!apiKey);
-  
-  // State to handle mobile view
+  // Safely retrieve API Key from localStorage
+  const getStoredApiKey = () => {
+    try {
+      return localStorage.getItem('apiKey') || '';
+    } catch (e) {
+      console.error('Failed to retrieve apiKey from localStorage:', e);
+      return '';
+    }
+  };
+
+  // Safely retrieve chats from localStorage
+  const getStoredChats = () => {
+    try {
+      const stored = localStorage.getItem('chats');
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      console.error('Failed to parse chats from localStorage:', e);
+      return [];
+    }
+  };
+
+  const storedApiKey = getStoredApiKey();
+  const storedChats = getStoredChats();
+
+  const [apiKey, setApiKey] = useState(storedApiKey);
+  const [chats, setChats] = useState(storedChats);
+
+  // Initialize currentChatId
+  const [currentChatId, setCurrentChatId] = useState(
+    storedChats.length > 0 && storedChats[0] ? storedChats[0].id : null
+  );
+
+  const [showApiKeyModal, setShowApiKeyModal] = useState(!storedApiKey);
+
+  // Handle mobile view state
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [showChatList, setShowChatList] = useState(!isMobile);
+  const [showChatList, setShowChatList] = useState(true);
 
   useEffect(() => {
     if (apiKey) {
-      localStorage.setItem('apiKey', apiKey);
-      setShowApiKeyModal(false);
+      try {
+        localStorage.setItem('apiKey', apiKey);
+        setShowApiKeyModal(false);
+      } catch (e) {
+        console.error('Failed to save apiKey to localStorage:', e);
+      }
     }
   }, [apiKey]);
 
   useEffect(() => {
-    localStorage.setItem('chats', JSON.stringify(chats));
+    try {
+      localStorage.setItem('chats', JSON.stringify(chats));
+    } catch (e) {
+      console.error('Failed to save chats to localStorage:', e);
+    }
   }, [chats]);
 
-  // Handler to update isMobile based on window width
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
       if (!mobile) {
-        setShowChatList(true); // Always show chat list on desktop
+        setShowChatList(true);
       } else {
-        setShowChatList(currentChatId === null);
+        setShowChatList(currentChatId == null); // Use == to catch null and undefined
       }
     };
 
     window.addEventListener('resize', handleResize);
+    handleResize(); 
     return () => window.removeEventListener('resize', handleResize);
   }, [currentChatId]);
+
 
   const addNewChat = () => {
     const newChat = {
@@ -63,10 +101,11 @@ function App() {
   };
 
   const deleteChat = (id) => {
-    setChats(chats.filter((chat) => chat.id !== id));
+    setChats((prevChats) => prevChats.filter((chat) => chat.id !== id));
     if (currentChatId === id) {
-      setCurrentChatId(null);
-      if (isMobile) {
+      const remainingChats = chats.filter((chat) => chat.id !== id);
+      setCurrentChatId(remainingChats.length > 0 ? remainingChats[0].id : null);
+      if (isMobile && remainingChats.length === 0) {
         setShowChatList(true);
       }
     }
@@ -88,9 +127,16 @@ function App() {
   };
 
   const handleBackToList = () => {
-    setShowChatList(true);
     setCurrentChatId(null);
+    setShowChatList(true);
   };
+
+  useEffect(() => {
+    console.log('currentChatId:', currentChatId);
+    console.log('isMobile:', isMobile);
+    console.log('showChatList:', showChatList);
+    console.log('currentChat:', currentChat);
+  }, [currentChatId, isMobile, showChatList, currentChat]);
 
   return (
     <div className="app">
@@ -133,6 +179,20 @@ function App() {
       {(!currentChat && !isMobile) && (
         <div className="main-content no-chat-selected">
           Start chatting.
+        </div>
+      )}
+
+      {/* Start Chatting Message on Mobile when no chat is selected and chat list is shown */}
+      {(!currentChat && isMobile && showChatList) && (
+        <div className="main-content no-chat-selected">
+          Start chatting.
+        </div>
+      )}
+
+      {/* Fallback UI on Mobile when no chat is selected and chat list is hidden */}
+      {(!currentChat && isMobile && !showChatList) && (
+        <div className="main-content no-chat-selected">
+          No chat selected. Please start a new chat.
         </div>
       )}
 
